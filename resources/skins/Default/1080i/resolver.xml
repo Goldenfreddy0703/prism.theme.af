@@ -1,5 +1,4 @@
-<window type="dialog">
-<onload>Skin.SetString(serenfile,$INFO[Window().Property(release_title)])</onload>
+﻿<window type="dialog">
     <defaultcontrol>2</defaultcontrol>
     <coordinates>
         <left>0</left>
@@ -78,13 +77,13 @@
         </control>
 
 
-        <!-- Seren Logo -->
+        <!-- Prism Logo -->
         <control type="image" id="1001">
-            <top>10</top>
-            <left>775</left>
-            <width>350</width>
+            <top>-50</top>
+            <left>855</left>
+            <width>210</width>
             <aspectratio>keep</aspectratio>
-            <texture>$INFO[Window().Property(seren.logo)]</texture>
+            <texture>$INFO[Window().Property(prism.logo)]</texture>
         </control>
         <control>
             <top>600</top>

@@ -44,6 +44,17 @@
                         <param name="vertical">true</param>
                         <param name="itemgap">0</param>
                     </include>
+                    <control type="button" id="3003">
+                        <include>Defs_OSD_Button</include>
+                    </control>
+                    <include content="OSD_Button_Icon_Overlay">
+                        <param name="icon">special://skin/extras/icons/disabled.png</param>
+                        <param name="visible">true</param>
+                        <param name="id">3003</param>
+                        <param name="groupid">5014</param>
+                        <param name="vertical">true</param>
+                        <param name="itemgap">0</param>
+                    </include>
                     <control type="button" id="3002">
                         <include>Defs_OSD_Button</include>
                     </control>

@@ -17,7 +17,7 @@
                 <width>upnext_image_w</width>
                 <include>Object_ItemBack</include>
                 <control type="image">
-                    <texture diffuse="diffuse/landscape_w356_h200.png">$INFO[Window.Property(item.art.fanart)]</texture>
+                    <texture diffuse="diffuse/landscape_w356_h200.png">$INFO[Window.Property(item.art.thumb)]</texture>
                     <aspectratio scalediffuse="false">scale</aspectratio>
                 </control>
                 <control type="progress" id="3014">
@@ -44,14 +44,14 @@
                         <param name="vertical">true</param>
                         <param name="itemgap">0</param>
                     </include>
-                    <control type="button" id="3003">
+                    <control type="button" id="3004">
                         <include>Defs_OSD_Button</include>
                     </control>
                     <include content="OSD_Button_Icon_Overlay">
-                        <param name="icon">special://skin/extras/icons/disabled.png</param>
+                        <param name="icon">special://skin/extras/icons/forward-fast.png</param>
                         <param name="visible">true</param>
-                        <param name="id">3003</param>
-                        <param name="groupid">5014</param>
+                        <param name="id">3004</param>
+                        <param name="groupid">5013</param>
                         <param name="vertical">true</param>
                         <param name="itemgap">0</param>
                     </include>

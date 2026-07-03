@@ -1,6 +1,5 @@
 <window type="dialog">
-<!--    <onload>Skin.SetString(SerenPath,special://home/userdata/addon_data/plugin.video.seren/skins/SerenMod-Full/resources/skins/)</onload> -->
-    <defaultcontrol>2</defaultcontrol>
+    <defaultcontrol always="true">1000</defaultcontrol>
     <coordinates>
         <left>0</left>
         <top>0</top>
@@ -150,13 +149,34 @@
 
         </control>
 
-        <!-- Top Logo/picture  -->
+        <!-- Clear logo centered over the source list column -->
         <control type="image" id="1001">
-            <top>-935</top>
-            <left>550</left>
-            <width>400</width>
-            <aspectratio>keep</aspectratio>
+            <top>20</top>
+            <left>80</left>
+            <width>1170</width>
+            <height>85</height>
+            <aspectratio align="center">keep</aspectratio>
             <texture background="true">$INFO[Window().Property(item.art.clearlogo)]</texture>
+            <visible>!String.IsEmpty(Window().Property(item.art.clearlogo))</visible>
+        </control>
+
+        <!-- View Uncached -->
+        <control type="button" id="2001">
+            <left>80</left>
+            <top>100</top>
+            <width>200</width>
+            <height>40</height>
+            <font>font12</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>DDFFFFFF</textcolor>
+            <focusedcolor>FFFFFFFF</focusedcolor>
+            <pulseonselect>false</pulseonselect>
+            <texturefocus border="5" colordiffuse="$INFO[Window().Property(settings.color)]">white.png</texturefocus>
+            <texturenofocus border="5" colordiffuse="AA2e2d32">white.png</texturenofocus>
+            <label>$ADDON[plugin.video.prism 30461]</label>
+            <ondown>1000</ondown>
+            <onright>1000</onright>
         </control>
 
         <!-- Scrollbar  -->
@@ -166,13 +186,15 @@
       	    <width>20</width>
       	    <height>838</height>
       	    <visible>true</visible>
-            <texturesliderbackground colordiffuse="9900000" border="4">special://home/userdata/addon_data/plugin.video.seren/skins/SerenMod-Full/resources/skins/media/white.png</texturesliderbackground>
-            <texturesliderbar colordiffuse="4dcccccc" border="4">special://home/userdata/addon_data/plugin.video.seren/skins/SerenMod-Full/resources/skins/media/scrollv.png</texturesliderbar>
-            <texturesliderbarfocus colordiffuse="99ffffff" border="4">special://home/userdata/addon_data/plugin.video.seren/skins/SerenMod-Full/resources/skins/media/scrollv.png</texturesliderbarfocus>
-      	    <pulseonselect></pulseonselect>
+            <texturesliderbackground border="4" colordiffuse="99000000">white.png</texturesliderbackground>
+            <texturesliderbar border="4" colordiffuse="66FFFFFF">white.png</texturesliderbar>
+            <texturesliderbarfocus border="4" colordiffuse="$INFO[Window().Property(settings.color)]">white.png</texturesliderbarfocus>
+      	    <pulseonselect>false</pulseonselect>
       	    <orientation>vertical</orientation>
       	    <showonepage>false</showonepage>
             <onleft>1000</onleft>
+            <onup>2001</onup>
+            <ondown>1000</ondown>
         </control>
 
         <!-- Sources List -->
@@ -186,26 +208,27 @@
             <focusposition>1</focusposition>
 	    <pagecontrol>17</pagecontrol>
 	    <onright>17</onright>
+            <onup>2001</onup>
             <itemlayout height="120">
-	        <control type="image">
-        	    <visible>true</visible>
-                    <texture background="true">$INFO[Window().Property(texture.white)]</texture>
+                <control type="image">
+                    <visible>true</visible>
+                    <texture background="true">white.png</texture>
                     <colordiffuse>AA2e2d32</colordiffuse>
                 </control>
                 <control type="label">
                     <top>20</top>
                     <left>10</left>
-                    <width>1000</width>
-                    <height>0</height>
-                    <font>font14</font>
+                    <width>1160</width>
+                    <height>5</height>
+                    <font>font12</font>
                     <textcolor>66FFFFFF</textcolor>
-		    <shadowcolor>dimgrey</shadowcolor>
+                    <shadowcolor>dimgrey</shadowcolor>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <label>[B][UPPERCASE]$INFO[ListItem.Label][/UPPERCASE][/B]</label>
+                    <label>[B]$INFO[ListItem.Label][/B]</label>
                 </control>
                 <control type="label">
-                    <top>70</top>
+                    <top>60</top>
                     <left>400</left>
                     <width>450</width>
                     <height>0</height>
@@ -213,58 +236,64 @@
                     <textcolor>FFFFFFFF</textcolor>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <label>Debrid: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(debrid_provider)][/COLOR][/UPPERCASE]
-                    </label>
+                    <label>Debrid: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(debrid_provider)][/COLOR][/UPPERCASE]</label>
                 </control>
                 <control type="label">
-                    <top>100</top>
+                    <top>90</top>
                     <left>400</left>
                     <width>450</width>
                     <height>0</height>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
                     <font>font10</font>
-                    <label>Provider: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(provider)][/COLOR][/UPPERCASE]
-                    </label>
+                    <label>Provider: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(provider)][/COLOR][/UPPERCASE]</label>
                 </control>
                 <control type="label">
-                    <top>70</top>
+                    <top>60</top>
                     <left>10</left>
                     <width>350</width>
                     <height>0</height>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-		    <shadowcolor>dimgrey</shadowcolor>
+                    <shadowcolor>dimgrey</shadowcolor>
                     <font>font10</font>
-                    <label>Type: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(type)][/COLOR][/UPPERCASE]
-                    </label>
+                    <label>Type: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(type)][/COLOR][/UPPERCASE]</label>
                 </control>
                 <control type="label">
-                    <top>100</top>
+                    <top>90</top>
                     <left>10</left>
                     <width>350</width>
                     <height>0</height>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-		    <shadowcolor>dimgrey</shadowcolor>
+                    <shadowcolor>dimgrey</shadowcolor>
                     <font>font10</font>
-                    <label>Info: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(info_text)][/COLOR][/UPPERCASE]
-                    </label>
+                    <label>Info: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(info_text)][/COLOR][/UPPERCASE]</label>
                 </control>
                 <control type="label">
-                    <centertop>70%</centertop>
-                    <left>830</left>
+                    <top>60</top>
+                    <left>750</left>
                     <width>350</width>
                     <height>0</height>
-                    <font>font14</font>
+                    <font>font10</font>
                     <textcolor>66FFFFFF</textcolor>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <label>Size: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(size)][/COLOR][/UPPERCASE]
-                    </label>
+                    <label>Seeders: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(seeds)][/COLOR][/UPPERCASE]</label>
                 </control>
-              <control type="image">
-                    <centertop>50%</centertop>
+                <control type="label">
+                    <left>750</left>
+                    <top>90</top>
+                    <width>350</width>
+                    <height>0</height>
+                    <font>font10</font>
+                    <textcolor>66FFFFFF</textcolor>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <label>Size: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(size)][/COLOR][/UPPERCASE]</label>
+                </control>
+                <control type="image">
+                    <centertop>60%</centertop>
                     <left>1010</left>
                     <width>128.8</width>
                     <height>87.2</height>
@@ -272,7 +301,7 @@
                     <visible>String.Contains(ListItem.Property(quality),SD)</visible>
                 </control>
                 <control type="image">
-                    <centertop>50%</centertop>
+                    <centertop>60%</centertop>
                     <left>1010</left>
                     <width>128.8</width>
                     <height>87.2</height>
@@ -280,7 +309,7 @@
                     <visible>String.Contains(ListItem.Property(quality),720P)</visible>
                 </control>
                 <control type="image">
-                    <centertop>50%</centertop>
+                    <centertop>60%</centertop>
                     <left>1010</left>
                     <width>128.8</width>
                     <height>87.2</height>
@@ -288,44 +317,43 @@
                     <visible>String.Contains(ListItem.Property(quality),1080P)</visible>
                 </control>
                 <control type="image">
-                    <centertop>50%</centertop>
+                    <centertop>60%</centertop>
                     <left>1010</left>
                     <width>128.8</width>
                     <height>87.2</height>
                     <texture background="true">$INFO[Window().Property(skin.dir)]/resources/skins/media/quality/qualityhd4k.png</texture>
                     <visible>String.Contains(ListItem.Property(quality),4k)</visible>
                 </control>
-
                 <control type="image">
                     <width>100%</width>
                     <height>3</height>
                     <bottom>-1</bottom>
-                    <texture colordiffuse="9f000000">special://home/addons/plugin.video.seren/resources/skins/resources/skins/media/white.png</texture>
-                 </control>
-
+                    <texture colordiffuse="9f000000">white.png</texture>
+                </control>
             </itemlayout>
 
             <focusedlayout height="120">
                 <control type="image">
                     <width>100%</width>
                     <height>97%</height>
-                    <texture background="true">$INFO[Window().Property(texture.white)]</texture>
+                    <texture background="true">white.png</texture>
                     <colordiffuse>77d3d3d3</colordiffuse>
                 </control>
                 <control type="label">
                     <top>20</top>
                     <left>10</left>
-                    <width>1000</width>
-                    <height>0</height>
-                    <font>font14</font>
+                    <width>1160</width>
+                    <height>5</height>
+                    <font>font12</font>
                     <textcolor>FFFFFFFF</textcolor>
-		    <shadowcolor>dimgrey</shadowcolor>
+                    <shadowcolor>dimgrey</shadowcolor>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <label>[B][UPPERCASE]$INFO[ListItem.Label][/UPPERCASE][/B]</label>
+                    <label>[B]$INFO[ListItem.Label][/B]</label>
+                    <scroll>true</scroll>
                 </control>
                 <control type="label">
-                    <top>70</top>
+                    <top>60</top>
                     <left>400</left>
                     <width>450</width>
                     <height>0</height>
@@ -333,58 +361,94 @@
                     <textcolor>FFFFFFFF</textcolor>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <label>Debrid: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(debrid_provider)][/COLOR][/UPPERCASE]
-                    </label>
+                    <label>Debrid: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(debrid_provider)][/COLOR][/UPPERCASE]</label>
                 </control>
                 <control type="label">
-                    <top>100</top>
+                    <top>90</top>
                     <left>400</left>
                     <width>450</width>
                     <height>0</height>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
                     <font>font10</font>
-                    <label>Provider: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(provider)][/COLOR][/UPPERCASE]
-                    </label>
+                    <label>Provider: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(provider)][/COLOR][/UPPERCASE]</label>
                 </control>
                 <control type="label">
-                    <top>70</top>
+                    <top>60</top>
                     <left>10</left>
                     <width>350</width>
                     <height>0</height>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-		    <shadowcolor>dimgrey</shadowcolor>
+                    <shadowcolor>dimgrey</shadowcolor>
                     <font>font10</font>
-                    <label>Type: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(type)][/COLOR][/UPPERCASE]
-                    </label>
+                    <label>Type: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(type)][/COLOR][/UPPERCASE]</label>
                 </control>
-                <control type="label">
-                    <top>100</top>
+                <!-- <control type="label">
+                    <top>90</top>
                     <left>10</left>
                     <width>350</width>
                     <height>0</height>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-		    <shadowcolor>dimgrey</shadowcolor>
+                    <shadowcolor>dimgrey</shadowcolor>
                     <font>font10</font>
-                    <label>Info: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(info_text)][/COLOR][/UPPERCASE]
-                    </label>
-                </control>
+                    <label>Info: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(info_text)][/COLOR][/UPPERCASE]</label>
+                    <scroll>true</scroll>
+                </control> -->
+
+                <!-- Static Info label -->
                 <control type="label">
-                    <centertop>70%</centertop>
-                    <left>830</left>
+                    <top>90</top>
+                    <left>10</left>
+                    <width>60</width>
+                    <height>0</height>
+                    <aligny>center</aligny>
+                    <textcolor>FFFFFFFF</textcolor>
+                    <shadowcolor>dimgrey</shadowcolor>
+                    <font>font10</font>
+                    <label>Info:</label>
+                </control>
+
+                <!-- Scrolling Info text -->
+                <control type="label">
+                    <top>90</top>
+                    <left>65</left>
+                    <width>295</width>
+                    <height>0</height>
+                    <aligny>center</aligny>
+                    <textcolor>FFFFFFFF</textcolor>
+                    <shadowcolor>dimgrey</shadowcolor>
+                    <font>font10</font>
+                    <label>[UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(info_text)][/COLOR][/UPPERCASE]</label>
+                    <scroll>true</scroll>
+                </control>
+
+
+                <control type="label">
+                    <top>60</top>
+                    <left>750</left>
                     <width>350</width>
                     <height>0</height>
-                    <font>font14</font>
+                    <font>font10</font>
                     <textcolor>66FFFFFF</textcolor>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <label>Size: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(size)][/COLOR][/UPPERCASE]
-                    </label>
+                    <label>Seeders: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(seeds)][/COLOR][/UPPERCASE]</label>
                 </control>
-              <control type="image">
-                    <centertop>50%</centertop>
+                <control type="label">
+                    <left>750</left>
+                    <top>90</top>
+                    <width>350</width>
+                    <height>0</height>
+                    <font>font10</font>
+                    <textcolor>66FFFFFF</textcolor>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <label>Size: [UPPERCASE][COLOR $INFO[Window().Property(settings.color)]]$INFO[ListItem.Property(size)][/COLOR][/UPPERCASE]</label>
+                </control>
+                <control type="image">
+                    <centertop>60%</centertop>
                     <left>1010</left>
                     <width>128.8</width>
                     <height>87.2</height>
@@ -392,7 +456,7 @@
                     <visible>String.Contains(ListItem.Property(quality),SD)</visible>
                 </control>
                 <control type="image">
-                    <centertop>50%</centertop>
+                    <centertop>60%</centertop>
                     <left>1010</left>
                     <width>128.8</width>
                     <height>87.2</height>
@@ -400,7 +464,7 @@
                     <visible>String.Contains(ListItem.Property(quality),720P)</visible>
                 </control>
                 <control type="image">
-                    <centertop>50%</centertop>
+                    <centertop>60%</centertop>
                     <left>1010</left>
                     <width>128.8</width>
                     <height>87.2</height>
@@ -408,14 +472,13 @@
                     <visible>String.Contains(ListItem.Property(quality),1080P)</visible>
                 </control>
                 <control type="image">
-                    <centertop>50%</centertop>
+                    <centertop>60%</centertop>
                     <left>1010</left>
                     <width>128.8</width>
                     <height>87.2</height>
                     <texture background="true">$INFO[Window().Property(skin.dir)]/resources/skins/media/quality/qualityhd4k.png</texture>
                     <visible>String.Contains(ListItem.Property(quality),4k)</visible>
                 </control>
-
             </focusedlayout>
         </control>
 
